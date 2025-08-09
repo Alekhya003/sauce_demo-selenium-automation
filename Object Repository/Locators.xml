@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <page name="loginpage">
+        <Element name="userName">
+            <Locator type="xpath">/html/body/div[1]/div/div[2]/div[1]/div/div/form/div[1]/input</Locator>
+        </Element>
+        <Element name="password">
+            <Locator type="xpath">/html/body/div[1]/div/div[2]/div[1]/div/div/form/div[2]/input</Locator>
+        </Element>
+        <Element name="loginButton">
+            <Locator type="xpath">/html/body/div[1]/div/div[2]/div[1]/div/div/form/input</Locator>
+        </Element>
+    </page>
+    <page name="productPage">
+        <Element name="inventory">
+            <Locator type="className">inventory_item_name</Locator>
+        </Element>
+    </page>
+</root>
