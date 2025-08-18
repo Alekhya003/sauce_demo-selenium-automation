@@ -35,7 +35,7 @@ public class loginTest {
         driver = new ChromeDriver(options);
         driver.get("https://www.saucedemo.com/");
     }
-    @Test
+    @Test(priority = 1)
     public void validLogin(){
         WebElement userName = driver.findElement(locatorHelper.getBy("loginpage", "userName"));
         userName.sendKeys("standard_user");
@@ -48,6 +48,18 @@ public class loginTest {
                 currenturl.contains("inventory.html"),
                 "Login failed! Expected 'inventory.html' in URL but found: " + currenturl
         );
+    }
+    @Test(priority = 2)
+    public void blockeduserLogin(){
+        WebElement userName = driver.findElement(locatorHelper.getBy("loginpage", "userName"));
+        userName.sendKeys("locked_out_user");
+        WebElement password = driver.findElement(locatorHelper.getBy("loginpage","password"));
+        password.sendKeys("secret_sauce");
+        WebElement loginButton = driver.findElement(locatorHelper.getBy("loginpage","loginButton"));
+        loginButton.click();
+        WebElement errorMessage = driver.findElement(locatorHelper.getBy("loginpage","errorMessage"));
+        String errorText = errorMessage.getText();
+        org.testng.Assert.assertTrue(errorText.contains("Sorry, this user has been locked out."),"The User is blocked");
     }
     @AfterMethod
     public void tearDown() {
