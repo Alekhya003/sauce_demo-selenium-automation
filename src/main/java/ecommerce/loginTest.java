@@ -17,14 +17,20 @@ public class loginTest {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--disable-notifications");
         options.addArguments("--disable-popup-blocking");
-        options.setExperimentalOption("excludeSwitches", List.of("enable-automation")); // hide "controlled by automation"
-        options.setExperimentalOption("useAutomationExtension", false);                 // disable automation extension
+        options.setExperimentalOption("excludeSwitches", List.of("enable-automation"));
+        options.setExperimentalOption("useAutomationExtension", false);
 
-// Disable Chrome's password manager prompts
-        options.setExperimentalOption("prefs", Map.of(
-                "credentials_enable_service", false,
-                "profile.password_manager_enabled", false
+        // Disable Chrome's password manager, autofill & leak detection
+        options.setExperimentalOption("prefs", Map.ofEntries(
+                Map.entry("credentials_enable_service", false),
+                Map.entry("profile.password_manager_enabled", false),
+                Map.entry("autofill.profile_enabled", false),
+                Map.entry("autofill.credit_card_enabled", false),
+                Map.entry("password_manager_leak_detection_enabled", false)
         ));
+
+        // Launch Chrome with a fresh profile (no saved logins or sync)
+        options.addArguments("user-data-dir=C:/Temp/chrome-new-profile");
         //WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver(options);
         driver.get("https://www.saucedemo.com/");
@@ -42,5 +48,11 @@ public class loginTest {
                 currenturl.contains("inventory.html"),
                 "Login failed! Expected 'inventory.html' in URL but found: " + currenturl
         );
+    }
+    @AfterMethod
+    public void tearDown() {
+        if (driver != null) {
+            driver.quit();
+        }
     }
 }

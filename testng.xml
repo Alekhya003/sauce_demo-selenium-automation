@@ -5,6 +5,7 @@
     <test name="LoginTests">
         <classes>
             <class name="ecommerce.loginTest"/>
+            <class name="ecommerce.checkproductName"></class>
         </classes>
     </test>
 </suite>

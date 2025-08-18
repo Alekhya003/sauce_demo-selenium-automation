@@ -2,91 +2,86 @@ package ecommerce;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import locatorHelper.locatorHelper;
-import objectRepo.objectRepository_xml;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.Assert;
+import org.testng.annotations.*;
 
 import java.util.*;
 
 public class checkproductName {
-    public static void main(String[] args){
+
+    WebDriver driver;
+
+    @BeforeMethod
+    public void setup() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--disable-notifications");
         options.addArguments("--disable-popup-blocking");
-        options.setExperimentalOption("excludeSwitches", List.of("enable-automation")); // hide "controlled by automation"
-        options.setExperimentalOption("useAutomationExtension", false);                 // disable automation extension
+        options.setExperimentalOption("excludeSwitches", List.of("enable-automation"));
+        options.setExperimentalOption("useAutomationExtension", false);
 
-// Disable Chrome's password manager prompts
-        options.setExperimentalOption("prefs", Map.of(
-                "credentials_enable_service", false,
-                "profile.password_manager_enabled", false
+        // Disable Chrome's password manager + autofill
+        options.setExperimentalOption("prefs", Map.ofEntries(
+                Map.entry("credentials_enable_service", false),
+                Map.entry("profile.password_manager_enabled", false),
+                Map.entry("autofill.profile_enabled", false),
+                Map.entry("autofill.credit_card_enabled", false),
+                Map.entry("password_manager_leak_detection_enabled", false)
         ));
+
         //WebDriverManager.chromedriver().setup();
-        WebDriver driver = new ChromeDriver(options);
-        try{
-            driver.get("https://www.saucedemo.com/inventory.html");
-            driver.manage().window().maximize();
-            WebElement userName = driver.findElement(locatorHelper.getBy("loginpage", "userName"));
-            userName.sendKeys("standard_user");
-            WebElement password = driver.findElement(locatorHelper.getBy("loginpage","password"));
-            password.sendKeys("secret_sauce");
-            WebElement loginButton = driver.findElement(locatorHelper.getBy("loginpage","loginButton"));
-            loginButton.click();
-            List<WebElement> inventory = driver.findElements(locatorHelper.getBy("productPage","inventory")) ;
-            ArrayList<String> productNames = new ArrayList<>();
-            for(WebElement productName :inventory){
-                productNames.add(productName.getText());
-            }
-//            System.out.println("The product names are :") ;
-//            for(String Name : productNames){
-//                System.out.println(Name);
-//            }
-            ArrayList<String> expectedproductNames = new ArrayList<>();
-            Collections.addAll(expectedproductNames,
-                    "Sauce Labs Backpack",
-                    "Sauce Labs Bike Light",
-                    "Sauce Labs Bolt T-Shirt",
-                    "Sauce Labs Fleece Jacket");
-            boolean allExpectedPresent = productNames.containsAll(expectedproductNames);
-
-            if (allExpectedPresent) {
-                System.out.println("✅ All expected products are present.");
-
-                // Print extra/unexpected products
-                System.out.println("🔎 Additional products (not in expected list):");
-                for (String actual : productNames) {
-                    if (!expectedproductNames.contains(actual)) {
-                        System.out.println("➕ " + actual);
-                    }
-                }
-
-            } else {
-                System.out.println("❌ FAIL! Not all expected products are present.");
-
-                // Show missing expected products
-                System.out.println("❌ Missing expected products:");
-                for (String expected : expectedproductNames) {
-                    if (!productNames.contains(expected)) {
-                        System.out.println("❌ " + expected);
-                    }
-                }
-
-                // Show all actual products
-                System.out.println("\n🔎 Retrieved product list:");
-                for (String actual : productNames) {
-                    System.out.println("✔️ " + actual);
-                }
-            }
-
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }finally {
-            driver.quit();
-        }
-
+        driver = new ChromeDriver(options);
+        driver.manage().window().maximize();
+        driver.get("https://www.saucedemo.com/");
     }
 
+    @Test
+    public void verifyProductNames() {
+        // Login
+        WebElement userName = driver.findElement(locatorHelper.getBy("loginpage", "userName"));
+        userName.sendKeys("standard_user");
+        WebElement password = driver.findElement(locatorHelper.getBy("loginpage", "password"));
+        password.sendKeys("secret_sauce");
+        WebElement loginButton = driver.findElement(locatorHelper.getBy("loginpage", "loginButton"));
+        loginButton.click();
+
+        // Get product names
+        List<WebElement> inventory = driver.findElements(locatorHelper.getBy("productPage", "inventory"));
+        ArrayList<String> productNames = new ArrayList<>();
+        for (WebElement productName : inventory) {
+            productNames.add(productName.getText());
+        }
+
+        // Expected product names
+        ArrayList<String> expectedProductNames = new ArrayList<>();
+        Collections.addAll(expectedProductNames,
+                "Sauce Labs Backpack",
+                "Sauce Labs Bike Light",
+                "Sauce Labs Bolt T-Shirt",
+                "Sauce Labs Fleece Jacket"
+        );
+
+        // Assert all expected products are present
+        Assert.assertTrue(
+                productNames.containsAll(expectedProductNames),
+                "❌ FAIL! Missing expected products.\nExpected: " + expectedProductNames + "\nFound: " + productNames
+        );
+
+        // Print additional products (not in expected list)
+        for (String actual : productNames) {
+            if (!expectedProductNames.contains(actual)) {
+                System.out.println("➕ Extra product found: " + actual);
+            }
+        }
+    }
+
+    @AfterMethod
+    public void tearDown() {
+        if (driver != null) {
+            driver.quit();
+        }
+    }
 }
