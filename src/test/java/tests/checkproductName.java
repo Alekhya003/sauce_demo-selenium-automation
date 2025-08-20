@@ -1,6 +1,5 @@
-package ecommerce;
+package tests;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 import locatorHelper.locatorHelper;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

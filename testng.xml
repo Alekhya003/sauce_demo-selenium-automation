@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="EcommerceSuite">
+    <listeners>
+        <listener class-name="listeners.TestNGWhatsAppListener"/>
+    </listeners>
 
     <test name="LoginTests">
         <classes>
-            <class name="ecommerce.loginTest"/>
-            <class name="ecommerce.checkproductName"></class>
+            <class name="tests.loginTest"/>
+            <class name="tests.checkproductName"></class>
         </classes>
     </test>
 </suite>

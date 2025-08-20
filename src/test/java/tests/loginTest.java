@@ -1,4 +1,4 @@
-package ecommerce;
+package tests;
 
 import locatorHelper.locatorHelper;
 import org.openqa.selenium.WebDriver;

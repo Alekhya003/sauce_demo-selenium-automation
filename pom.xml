@@ -47,6 +47,11 @@
             <version>7.11.0</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>com.twilio.sdk</groupId>
+            <artifactId>twilio</artifactId>
+            <version>9.13.0</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
