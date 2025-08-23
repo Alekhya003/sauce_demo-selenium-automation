@@ -1,6 +1,7 @@
 package tests;
 
 import locatorHelper.locatorHelper;
+import Pages.loginPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -37,12 +38,16 @@ public class loginTest {
     }
     @Test(priority = 1)
     public void validLogin(){
-        WebElement userName = driver.findElement(locatorHelper.getBy("loginpage", "userName"));
-        userName.sendKeys("standard_user");
-        WebElement password = driver.findElement(locatorHelper.getBy("loginpage","password"));
-        password.sendKeys("secret_sauce");
-        WebElement loginButton = driver.findElement(locatorHelper.getBy("loginpage","loginButton"));
-        loginButton.click();
+//        WebElement userName = driver.findElement(locatorHelper.getBy("loginpage", "userName"));
+//        userName.sendKeys("standard_user");
+//        WebElement password = driver.findElement(locatorHelper.getBy("loginpage","password"));
+//        password.sendKeys("secret_sauce");
+//        WebElement loginButton = driver.findElement(locatorHelper.getBy("loginpage","loginButton"));
+//        loginButton.click();
+        loginPage login = new loginPage(driver);
+        login.enterUsername("standard_user");
+        login.enterPassword("secret_sauce");
+        login.clickSubmit();
         String currenturl = driver.getCurrentUrl();
         org.testng.Assert.assertTrue(
                 currenturl.contains("inventory.html"),
@@ -51,12 +56,16 @@ public class loginTest {
     }
     @Test(priority = 2)
     public void blockeduserLogin(){
-        WebElement userName = driver.findElement(locatorHelper.getBy("loginpage", "userName"));
-        userName.sendKeys("locked_out_user");
-        WebElement password = driver.findElement(locatorHelper.getBy("loginpage","password"));
-        password.sendKeys("secret_sauce");
-        WebElement loginButton = driver.findElement(locatorHelper.getBy("loginpage","loginButton"));
-        loginButton.click();
+//        WebElement userName = driver.findElement(locatorHelper.getBy("loginpage", "userName"));
+//        userName.sendKeys("locked_out_user");
+//        WebElement password = driver.findElement(locatorHelper.getBy("loginpage","password"));
+//        password.sendKeys("secret_sauce");
+//        WebElement loginButton = driver.findElement(locatorHelper.getBy("loginpage","loginButton"));
+//        loginButton.click();
+        loginPage login = new loginPage(driver);
+        login.enterUsername("locked_out_user");
+        login.enterPassword("secret_sauce");
+        login.clickSubmit();
         WebElement errorMessage = driver.findElement(locatorHelper.getBy("loginpage","errorMessage"));
         String errorText = errorMessage.getText();
         org.testng.Assert.assertTrue(errorText.contains("Sorry, this user has been locked out."),"The User is blocked");

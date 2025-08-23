@@ -3,7 +3,8 @@ package locatorHelper;
 import objectRepo.objectRepository_xml;
 import org.openqa.selenium.By;
 
-public class locatorHelper {    public static By getBy(String pageName , String elementName){
+public class locatorHelper {
+    public static By getBy(String pageName , String elementName){
     String locatorData = objectRepository_xml.getLocator(pageName,elementName);
     String[] parts = locatorData.split("::");
     String value = parts[0];
