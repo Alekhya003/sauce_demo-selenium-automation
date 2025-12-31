@@ -50,9 +50,7 @@ public class checkproductname {
 //        WebElement loginButton = driver.findElement(locatorHelper.getBy("loginpage", "loginButton"));
 //        loginButton.click();
         loginPage login = new loginPage(driver);
-        login.enterUsername("standard_user");
-        login.enterPassword("secret_sauce");
-        login.clickSubmit();
+        login.login("standard_user","secret_sauce");
 
         // Get product names
         List<WebElement> inventory = driver.findElements(locatorHelper.getBy("productPage", "inventory"));

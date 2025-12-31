@@ -45,9 +45,7 @@ public class loginTest {
 //        WebElement loginButton = driver.findElement(locatorHelper.getBy("loginpage","loginButton"));
 //        loginButton.click();
         loginPage login = new loginPage(driver);
-        login.enterUsername("standard_user");
-        login.enterPassword("secret_sauce");
-        login.clickSubmit();
+        login.login("standard_user","secret_sauce");
         String currenturl = driver.getCurrentUrl();
         org.testng.Assert.assertTrue(
                 currenturl.contains("inventory.html"),
@@ -63,9 +61,8 @@ public class loginTest {
 //        WebElement loginButton = driver.findElement(locatorHelper.getBy("loginpage","loginButton"));
 //        loginButton.click();
         loginPage login = new loginPage(driver);
-        login.enterUsername("locked_out_user");
-        login.enterPassword("secret_sauce");
-        login.clickSubmit();
+        login.login("locked_out_user","secret_sauce");
+
         WebElement errorMessage = driver.findElement(locatorHelper.getBy("loginpage","errorMessage"));
         String errorText = errorMessage.getText();
         org.testng.Assert.assertTrue(errorText.contains("Sorry, this user has been locked out."),"The User is blocked");
