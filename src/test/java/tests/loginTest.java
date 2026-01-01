@@ -1,7 +1,7 @@
 package tests;
 
 import locatorHelper.locatorHelper;
-import Pages.loginPage;
+import Pages.LoginPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -44,7 +44,7 @@ public class loginTest {
 //        password.sendKeys("secret_sauce");
 //        WebElement loginButton = driver.findElement(locatorHelper.getBy("loginpage","loginButton"));
 //        loginButton.click();
-        loginPage login = new loginPage(driver);
+        LoginPage login = new LoginPage(driver);
         login.login("standard_user","secret_sauce");
         String currenturl = driver.getCurrentUrl();
         org.testng.Assert.assertTrue(
@@ -60,7 +60,7 @@ public class loginTest {
 //        password.sendKeys("secret_sauce");
 //        WebElement loginButton = driver.findElement(locatorHelper.getBy("loginpage","loginButton"));
 //        loginButton.click();
-        loginPage login = new loginPage(driver);
+        LoginPage login = new LoginPage(driver);
         login.login("locked_out_user","secret_sauce");
 
         WebElement errorMessage = driver.findElement(locatorHelper.getBy("loginpage","errorMessage"));

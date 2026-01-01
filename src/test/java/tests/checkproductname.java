@@ -1,12 +1,10 @@
 package tests;
 
-import locatorHelper.locatorHelper;
-import Pages.loginPage;
+import Pages.ProductPage;
+import Pages.LoginPage;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
@@ -42,23 +40,10 @@ public class checkproductname {
 
     @Test
     public void verifyProductNames() {
-        // Login
-//        WebElement userName = driver.findElement(locatorHelper.getBy("loginpage", "userName"));
-//        userName.sendKeys("standard_user");
-//        WebElement password = driver.findElement(locatorHelper.getBy("loginpage", "password"));
-//        password.sendKeys("secret_sauce");
-//        WebElement loginButton = driver.findElement(locatorHelper.getBy("loginpage", "loginButton"));
-//        loginButton.click();
-        loginPage login = new loginPage(driver);
+        LoginPage login = new LoginPage(driver);
         login.login("standard_user","secret_sauce");
-
-        // Get product names
-        List<WebElement> inventory = driver.findElements(locatorHelper.getBy("productPage", "inventory"));
-        ArrayList<String> productNames = new ArrayList<>();
-        for (WebElement productName : inventory) {
-            productNames.add(productName.getText());
-        }
-
+        ProductPage inventory = new ProductPage(driver);
+        ArrayList<String> productNames = new ArrayList<>(inventory.allproductNames());
         // Expected product names
         ArrayList<String> expectedProductNames = new ArrayList<>();
         Collections.addAll(expectedProductNames,
