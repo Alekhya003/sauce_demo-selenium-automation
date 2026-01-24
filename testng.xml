@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="EcommerceSuite">
     <listeners>
-        <listener class-name="listeners.TestNGWhatsAppListener"/>
+        <listener class-name="listeners.TestNGListener"/>
     </listeners>
 
     <test name="LoginTests">

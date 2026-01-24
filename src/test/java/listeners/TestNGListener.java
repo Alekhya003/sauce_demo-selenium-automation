@@ -1,8 +1,10 @@
 package listeners;
+import jakarta.mail.MessagingException;
 import org.testng.*;
+import utils.EmailUtil;
 import utils.WhatsAppNotifier;
 
-public class TestNGWhatsAppListener implements ITestListener, ISuiteListener{
+public class TestNGListener implements ITestListener, ISuiteListener{
     private int passed = 0, failed = 0, skipped = 0;
     public void onTestSuccess(ITestResult result) { passed++; }
     public void onTestFailure(ITestResult result) { failed++; }
@@ -15,5 +17,8 @@ public class TestNGWhatsAppListener implements ITestListener, ISuiteListener{
                 "⚠️ Skipped: " + skipped + "\n";
 
         WhatsAppNotifier.sendMessage("+917980064700", report);
+       // String toMail = System.getProperty("toMail","royalekhya207@gmail.com");
+        EmailUtil emailUtil = new EmailUtil();
+        emailUtil.mailSend(report,"royalekhya1999@gmail.com");
     }
 }
