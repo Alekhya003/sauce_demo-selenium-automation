@@ -7,12 +7,16 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.annotations.*;
 
 import java.util.List;
 import java.util.Map;
 
 public class loginTest extends BaseTest {
+    private static final Logger log = LoggerFactory.getLogger(loginTest.class);
+
     @Test(priority = 1)
     public void validLogin(){
         DriverManager driver = new DriverManager();
@@ -31,5 +35,6 @@ public class loginTest extends BaseTest {
 
         String errorMessage = login.errormessage();
         org.testng.Assert.assertTrue(errorMessage.contains("Sorry, this user has been locked out."),"The User is blocked");
+        log.info("Log in failed for user");
     }
 }

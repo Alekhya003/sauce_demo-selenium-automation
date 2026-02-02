@@ -9,7 +9,8 @@ public class TestNGListener implements ITestListener, ISuiteListener{
     public void onTestSuccess(ITestResult result) { passed++; }
     public void onTestFailure(ITestResult result) { failed++; }
     public void onTestSkipped(ITestResult result) { skipped++; }
-    public void onFinish(ISuite suite) {
+    public void onFinish(ISuite suite)
+    {
         String report = "📢 Today's Regression Report\n" +
                 "Suite: " + suite.getName()+"\n"+
                 "✅ Passed: " + passed + "\n" +
