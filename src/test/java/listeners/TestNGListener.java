@@ -35,7 +35,6 @@ public class TestNGListener implements ITestListener, ISuiteListener{
 
         String toNumber = ConfigReader.getProperty("whatsappToNumber");
         WhatsAppNotifier.sendMessage(toNumber, report);
-       // String toMail = System.getProperty("toMail","royalekhya207@gmail.com");
         EmailUtil emailUtil = new EmailUtil();
         emailUtil.mailSend(report,"royalekhya1999@gmail.com");
     }
