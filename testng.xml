@@ -7,16 +7,17 @@
 
     <test name="LoginTests">
         <classes>
-            <class name="tests.loginTest">
-                <methods>
-                    <exclude name="blockeduserLogin"></exclude>
-                </methods>
-            </class>
+            <class name="tests.loginTest"/>
         </classes>
     </test>
     <test name="ProductNameCheck">
         <classes>
             <class name="tests.checkproductname"/>
+        </classes>
+    </test>
+    <test name="CartFunctionalityTest">
+        <classes>
+            <class name="tests.CartFunctionalityTest"></class>
         </classes>
     </test>
 </suite>

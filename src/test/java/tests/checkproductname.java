@@ -9,6 +9,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.*;
+import utils.ConfigReader;
 
 import java.util.*;
 
@@ -16,8 +17,10 @@ public class checkproductname  extends BaseTest {
 
     @Test
     public void verifyProductNames() {
+        String userName = ConfigReader.getProperty("standardUserName");
+        String password = ConfigReader.getProperty("passwordforAll");
         LoginPage login = new LoginPage();
-        login.login("standard_user","secret_sauce");
+        login.login(userName,password);
         ProductPage inventory = new ProductPage();
         ArrayList<String> productNames = new ArrayList<>(inventory.allproductNames());
         // Expected product names
