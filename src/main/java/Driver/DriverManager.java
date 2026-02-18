@@ -7,15 +7,14 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.firefox.GeckoDriverInfo;
 
 import java.util.List;
 import java.util.Map;
 
 public class DriverManager {
     private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
-    public static void Driver(){
-        String browser = System.getProperty("browser","chrome").toLowerCase();
+    public static void initDriver(String browser){
+//        String browser = System.getProperty("browser","chrome").toLowerCase();
         boolean headless = Boolean.parseBoolean(System.getProperty("headless","false"));
         switch (browser){
             case "chrome":
@@ -57,6 +56,9 @@ public class DriverManager {
                     edgeOption.addArguments("windows-size=1920,1080");
                 }
                 driver.set(new EdgeDriver(edgeOption));
+                break;
+            default:
+                throw new RuntimeException("Invalid Browser : "+ browser);
         }
     }
     public static WebDriver getDriver(){
