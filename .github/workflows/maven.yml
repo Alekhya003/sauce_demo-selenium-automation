@@ -25,12 +25,33 @@ jobs:
       TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Set up JDK 21
-      uses: actions/setup-java@v4
-      with:
-        java-version: '21'
-        distribution: 'temurin'
-        cache: maven
-    - name: Build with Maven
-      run: mvn clean test -Dbrowser=chrome -Durl=https://www.saucedemo.com/ -Dheadless=true
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: maven
+
+      # Install Chrome
+      - name: Install Chrome
+        uses: browser-actions/setup-chrome@v1
+
+      # Install Firefox
+      - name: Install Firefox
+        uses: browser-actions/setup-firefox@v1
+
+      # Install Edge
+      - name: Install Edge
+        uses: browser-actions/setup-edge@v1
+
+      # Verify browsers (debug step)
+      - name: Check browser versions
+        run: |
+          google-chrome --version
+          firefox --version
+          microsoft-edge --version
+
+      - name: Run Selenium Tests
+        run: mvn clean test -DsuiteXmlFile=testng.xml -Dheadless=true
