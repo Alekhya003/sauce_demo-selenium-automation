@@ -53,7 +53,7 @@ public class DriverManager {
                 edgeOption.addArguments("--disable-popup-blocking");
                 if (headless){
                     edgeOption.addArguments("--headless=new");
-                    edgeOption.addArguments("windows-size=1920,1080");
+                    edgeOption.addArguments("window-size=1920,1080");
                 }
                 driver.set(new EdgeDriver(edgeOption));
                 break;
