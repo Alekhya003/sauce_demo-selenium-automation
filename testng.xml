@@ -1,23 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="EcommerceSuite">
+
+<suite name="EcommerceSuite" parallel="tests" thread-count="3">
+
     <listeners>
         <listener class-name="listeners.TestNGListener"/>
     </listeners>
 
-    <test name="LoginTests">
+    <!-- Chrome Tests -->
+    <test name="ChromeTests">
+        <parameter name="browser" value="chrome"/>
         <classes>
             <class name="tests.loginTest"/>
-        </classes>
-    </test>
-    <test name="ProductNameCheck">
-        <classes>
             <class name="tests.checkproductname"/>
+            <class name="tests.CartFunctionalityTest"/>
         </classes>
     </test>
-    <test name="CartFunctionalityTest">
+
+    <!-- Firefox Tests -->
+    <test name="FirefoxTests">
+        <parameter name="browser" value="firefox"/>
         <classes>
-            <class name="tests.CartFunctionalityTest"></class>
+            <class name="tests.loginTest"/>
+            <class name="tests.checkproductname"/>
+            <class name="tests.CartFunctionalityTest"/>
         </classes>
     </test>
+
+<!--     Edge Tests-->
+<!--    <test name="EdgeTests">-->
+<!--        <parameter name="browser" value="edge"/>-->
+<!--        <classes>-->
+<!--            <class name="tests.loginTest"/>-->
+<!--            <class name="tests.checkproductname"/>-->
+<!--            <class name="tests.CartFunctionalityTest"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+
 </suite>

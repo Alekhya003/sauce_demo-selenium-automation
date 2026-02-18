@@ -37,7 +37,7 @@ public class EmailUtil {
         this.mailSender = sender;
     }
 
-    public void mailSend(String report, String to) {
+    public void mailSend(String report, String to , String suiteName) {
 
         if (mailSender == null) {
             System.err.println("MailSender not initialized. Email skipped.");
@@ -47,9 +47,9 @@ public class EmailUtil {
         try {
             MimeMessage message = mailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message, true);
-
+            DateAndTime d = new DateAndTime();
             helper.setTo(to);
-            helper.setSubject("Test Automation Report");
+            helper.setSubject("Test Automation Report : " + "-" + suiteName + " " +d.dateTime());
             helper.setText(report);
 
             mailSender.send(message);
