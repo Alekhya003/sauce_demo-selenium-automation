@@ -6,65 +6,108 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.2.1</version>   <!-- Stable -->
+        <version>3.2.1</version>
         <relativePath/>
     </parent>
+
     <groupId>org.example</groupId>
     <artifactId>Selenium_Automation</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <name>Selenium Automation Framework</name>
+    <description>Production-ready Selenium automation framework with TestNG</description>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <selenium.version>4.35.0</selenium.version>
+        <testng.version>7.11.0</testng.version>
+        <slf4j.version>1.7.36</slf4j.version>
     </properties>
-    <dependencies><!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+
+    <dependencies>
+        <!-- Selenium WebDriver -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>4.35.0</version>
+            <version>${selenium.version}</version>
         </dependency>
+
+        <!-- WebDriver Manager for automatic driver setup -->
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
             <version>5.8.0</version>
         </dependency>
+
+        <!-- TestNG -->
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>${testng.version}</version>
+        </dependency>
+
+        <!-- Logging -->
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-            <version>1.4.14</version> <!-- Use latest -->
+            <version>1.4.14</version>
         </dependency>
         <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>7.11.0</version>
-            <scope>test</scope>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
         </dependency>
+
+        <!-- Email Support -->
         <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>7.11.0</version>
-            <scope>compile</scope>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
         </dependency>
+
+        <!-- WhatsApp Integration (Twilio) -->
         <dependency>
             <groupId>com.twilio.sdk</groupId>
             <artifactId>twilio</artifactId>
             <version>9.13.0</version>
         </dependency>
+
+        <!-- Apache Commons -->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-mail</artifactId>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.14.0</version>
         </dependency>
+
+        <!-- JSON Processing (for test data) -->
         <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>7.11.0</version>
-            <scope>compile</scope>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.10.1</version>
+        </dependency>
+
+        <!-- Allure Reports Integration -->
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-testng</artifactId>
+            <version>2.25.0</version>
         </dependency>
     </dependencies>
-    
+
     <build>
         <plugins>
+            <!-- Maven Compiler Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.13.0</version>
+                <configuration>
+                    <source>21</source>
+                    <target>21</target>
+                </configuration>
+            </plugin>
+
+            <!-- Maven Surefire Plugin for Test Execution -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -73,7 +116,22 @@
                     <suiteXmlFiles>
                         <suiteXmlFile>testng.xml</suiteXmlFile>
                     </suiteXmlFiles>
+                    <argLine>-Xmx1024m -XX:MaxMetaspaceSize=256m</argLine>
                 </configuration>
+            </plugin>
+
+            <!-- Maven Failsafe Plugin for Integration Tests -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>3.5.3</version>
+            </plugin>
+
+            <!-- Allure Maven Plugin for Report Generation -->
+            <plugin>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>2.14.0</version>
             </plugin>
         </plugins>
     </build>

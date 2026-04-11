@@ -1,40 +1,94 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite name="EcommerceSuite" parallel="tests" thread-count="3">
+<suite name="EcommerceSuite" parallel="none" thread-count="1" verbose="2">
+    <!--
+    Test Groups:
+    - smoke: Quick validation tests (run in every build)
+    - regression: Full feature tests (run nightly)
+    - sanity: Basic functionality (run before releases)
 
+    Parallel Execution:
+    - none: Sequential execution (disabled for debugging WebDriver issues)
+    - thread-count: Number of parallel threads (currently 1)
+    -->
+
+    <!-- Global Listeners -->
     <listeners>
         <listener class-name="listeners.TestNGListener"/>
     </listeners>
 
     <!-- Chrome Tests -->
-    <test name="ChromeTests">
+    <test name="ChromeSuite">
         <parameter name="browser" value="chrome"/>
+        <groups>
+            <run>
+                <include name="smoke"/>
+                <include name="regression"/>
+            </run>
+        </groups>
         <classes>
-            <class name="tests.loginTest"/>
-            <class name="tests.checkproductname"/>
+            <class name="tests.LoginTest"/>
+            <class name="tests.CheckProductName"/>
             <class name="tests.CartFunctionalityTest"/>
         </classes>
     </test>
 
     <!-- Firefox Tests -->
-    <test name="FirefoxTests">
+    <test name="FirefoxSuite">
         <parameter name="browser" value="firefox"/>
+        <groups>
+            <run>
+                <include name="smoke"/>
+                <include name="regression"/>
+            </run>
+        </groups>
         <classes>
-            <class name="tests.loginTest"/>
-            <class name="tests.checkproductname"/>
+            <class name="tests.LoginTest"/>
+            <class name="tests.CheckProductName"/>
             <class name="tests.CartFunctionalityTest"/>
         </classes>
     </test>
 
-<!--     Edge Tests-->
-<!--    <test name="EdgeTests">-->
-<!--        <parameter name="browser" value="edge"/>-->
-<!--        <classes>-->
-<!--            <class name="tests.loginTest"/>-->
-<!--            <class name="tests.checkproductname"/>-->
-<!--            <class name="tests.CartFunctionalityTest"/>-->
-<!--        </classes>-->
-<!--    </test>-->
+    <!-- Edge Tests -->
+    <test name="EdgeSuite">
+        <parameter name="browser" value="edge"/>
+        <groups>
+            <run>
+                <include name="smoke"/>
+                <include name="regression"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="tests.LoginTest"/>
+            <class name="tests.CheckProductName"/>
+            <class name="tests.CartFunctionalityTest"/>
+        </classes>
+    </test>
 
 </suite>
+
+<!--
+Usage Examples:
+
+1. Run only smoke tests:
+   mvn clean test -Dgroups=smoke
+
+2. Run smoke and regression tests:
+   mvn clean test -Dgroups=smoke,regression
+
+3. Run headless:
+   mvn clean test -Dheadless=true
+
+4. Run specific browser:
+   mvn clean test -Dbrowser=chrome
+
+5. Run with specific log level:
+   mvn clean test -Dlog.level=DEBUG
+
+6. Generate reports:
+   mvn allure:report
+
+7. View allure reports:
+   mvn allure:serve
+-->

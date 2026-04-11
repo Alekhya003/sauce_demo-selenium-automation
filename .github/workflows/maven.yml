@@ -54,4 +54,4 @@ jobs:
           microsoft-edge --version
 
       - name: Run Selenium Tests
-        run: mvn clean test -DsuiteXmlFile=testng.xml -Dheadless=true
+        run: mvn clean test "-Dtest=tests.LoginTest,tests.CheckProductName,tests.CartFunctionalityTest" "-Dbrowser=chrome" "-Dheadless=true"

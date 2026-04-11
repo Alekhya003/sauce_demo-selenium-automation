@@ -5,8 +5,39 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b9a0173f-8887-4160-bd61-60338572cdb2" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/COMPLETE_DELIVERABLES.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DEPLOYMENT_CHECKLIST.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DOCUMENTATION_INDEX.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IMPLEMENTATION_SUMMARY.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PRODUCTION_READY_RECOMMENDATIONS.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/QUICK_REFERENCE.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SETUP_AND_BEST_PRACTICES.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/START_HERE.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Pages/BasePage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/annotations/Category.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/annotations/Severity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/utils/ScreenshotUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/utils/TestDataManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/logback.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/listeners/RetryAnalyzer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/testdata/credentials.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/testdata/products.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.github/workflows/maven.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/maven.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Driver/DriverManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Driver/DriverManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Pages/CartPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Pages/CartPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Pages/LoginPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Pages/LoginPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Pages/ProductPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Pages/ProductPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utils/ConfigReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utils/ConfigReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utils/DateAndTime.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utils/DateAndTime.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/base/BaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/base/BaseTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/listeners/TestNGListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/listeners/TestNGListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tests/CartFunctionalityTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/CartFunctionalityTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tests/checkproductname.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/CheckProductName.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tests/loginTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/LoginTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testng.xml" beforeDir="false" afterPath="$PROJECT_DIR$/testng.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
